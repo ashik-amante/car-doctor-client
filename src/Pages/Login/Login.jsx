@@ -1,7 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import img from '../../assets/images/login/login.svg'
+import { useContext } from 'react';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const Login = () => {
+    const {login} = useContext(AuthContext)
+    const navigate = useNavigate()
     const handlelogin = event =>{
         event.preventDefault()
         const form = event.target;      
@@ -9,6 +13,16 @@ const Login = () => {
         const password = form.password.value;
         const user = {email,password}
         console.log(user);
+        // login
+        login(email,password)
+        .then(result=>{
+            console.log(result.user);
+            navigate('/')
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
