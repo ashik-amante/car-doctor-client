@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 export const AuthContext = createContext(null)
 const AuthProvider = ({children}) => {
     const [user,setUser] = useState(null)
-    const [loading,setLoading] = useState(null)
+    const [loading,setLoading] = useState(true)
 
     // create user
     const createUser = (email,password)=>{
@@ -25,7 +25,9 @@ const AuthProvider = ({children}) => {
     // observer
     useEffect(()=>{
         const unSubscribe = onAuthStateChanged(auth, currentUser=>{
+            setLoading(false)
             setUser(currentUser)
+            
         })
         return ()=>{
             unSubscribe()

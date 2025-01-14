@@ -4,7 +4,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 
 
-const CheckOut = () => {
+const Bookservice = () => {
     const services = useLoaderData()
     const {user} = useContext(AuthContext)
     const { title, price, service_id,img } = services
@@ -45,7 +45,7 @@ const CheckOut = () => {
     }
     return (
         <div>
-            <h1>Book service : {title}</h1>
+            <h1 className="text-center text-3xl font-bold mt-10"> Service Name : {title}</h1>
 
             <form onSubmit={handleService} className="card-body">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -83,11 +83,11 @@ const CheckOut = () => {
                 </div>
                 <div className="form-control mt-6">
                     
-                    <input className="btn btn-primary" type="submit" value="ORDER CONFIRM" />
+                    <input className="btn btn-primary text-white text-xl" type="submit" value="ORDER CONFIRM" />
                 </div>
             </form>
         </div>
     );
 };
 
-export default CheckOut;
+export default Bookservice;
